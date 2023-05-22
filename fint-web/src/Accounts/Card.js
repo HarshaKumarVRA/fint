@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import chasebanklogo from "../BankLogos/chasebanklogo.png";
 import {
   ElevatedCard,
   Column,
@@ -8,7 +9,9 @@ import {
   HorizontalSpacer,
   Tag,
   Button,
-  BottomSheet
+  BottomSheet,
+  VerticalSpacer,
+  Slider
 } from "@cred/neopop-web/lib/components";
 import {
   mainColors,
@@ -52,7 +55,9 @@ function Card (props) {
         <Column>
           <Row>
               <Typography {...fontNameSpaces.tc12b} color={mainColors.white}>
-                {props.cardDetails.owningBank}
+                {props.cardDetails.owningBank === 'Chase Bank' ?
+                  <img src={chasebanklogo} width={75} height={25} alt='Chase Bank'/>
+                :"Chase Bank"}
               </Typography>
           </Row>
               <HorizontalSpacer n={2} />
@@ -70,6 +75,19 @@ function Card (props) {
           <Typography {...fontNameSpaces.th16b} color={mainColors.white}>
             ${props.cardDetails.depositAmount}
           </Typography>
+          <VerticalSpacer n={2} />
+          {props.isEdit &&
+            <Button kind="link" color={mainColors.white}>
+              Edit
+            </Button>
+          }
+          </Row>
+          <Row>
+          {props.isEdit &&
+            <Slider min={0} max={2500000} step={1000} defaultValue={250000}
+            onChange={console.log("tes")}
+            onInput={console.log("test")} />
+          }
           </Row>
           <HorizontalSpacer n={2} />
           <Row>

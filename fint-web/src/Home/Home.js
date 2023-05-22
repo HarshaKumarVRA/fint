@@ -19,7 +19,10 @@ import './Home.css';
 import { HeroSection, RootPage, Heading, RootPage1 } from './HomeStyled';
 import Accounts from '../Accounts/Accounts';
 import NewDeposits from '../NewDeposits/NewDeposits';
+import { AccountsData } from '../AccountsData';
 
+const unInsuredAmount = AccountsData.filter(accountData => accountData.depositAmount > 250000)
+  .reduce((sum, currentValue) => sum + currentValue.depositAmount - 250000 , 0);
 export default function Home() {
   const [isOpen, setOpen] = useState();
   const handleClose = () => {
@@ -62,8 +65,8 @@ export default function Home() {
 
       <HeroSection>
         <Row className='h-center'>
-        <Typography {...fontNameSpaces.tc12b} color={mainColors.red}>
-        You have un-insured deposits. Do you want to split them and mitigate the risk?
+        <Typography {...fontNameSpaces.tc12b} color={colorGuide.darkComponents.font.bodyText}>
+        You have un-insured deposits worth ${unInsuredAmount}. Do you want to split them and mitigate the risk?
       </Typography>
       <VerticalSpacer n={2} />
         <Button

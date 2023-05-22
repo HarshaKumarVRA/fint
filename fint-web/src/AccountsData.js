@@ -22,7 +22,7 @@ export const AccountsData = [
         type : 'Savings',
         owningBank : 'Silicon Valley Bank',
         originCountry : 'USA',
-        depositAmount : 2500000,
+        depositAmount : 450000,
         maturityDate : '10/15/2024',
         interestRate : 5.3
     },
@@ -35,17 +35,4 @@ export const AccountsData = [
         maturityDate : '10/15/2024',
         interestRate : 5.3
     }
-    // ,
-    // {
-    //     number: 'xxxx-xxxx-8956',
-    //     type : 'Savings',
-    //     owningBank : 'IDFC First Bank',
-    //     originCountry : 'India'
-    // },
-    // {
-    //     number: 'xxxx-xxxx-2322',
-    //     type : 'Savings',
-    //     owningBank : 'Indiana Bank',
-    //     originCountry : 'India'
-    // }
 ];

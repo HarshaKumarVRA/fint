@@ -12,14 +12,20 @@ const Accounts1 = AccountsData.filter(account => account.depositAmount > 250000)
 function NewDeposits () {
 return (
     <>
+    <Row className="v-justify">
     <AccountsStyled className='v-center'>
     {Accounts1.map((data, i) => (
         <React.Fragment key={i}>
-            <Card cardDetails={data} />
+            <Card cardDetails={data} isEdit="true"/>
             <VerticalSpacer n={3} />
         </React.Fragment>
     ))}
     </AccountsStyled>
+    <Typography {...fontNameSpaces.tc12b} color={colorGuide.darkComponents.font.bodyText}>
+            Your uninsured amount
+        </Typography>
+    </Row>
+    
     <HorizontalSpacer n={8} />
     <Row>
     <Typography {...fontNameSpaces.tc12b} color={colorGuide.darkComponents.font.bodyText}>
