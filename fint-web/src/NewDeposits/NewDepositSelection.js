@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Back } from '@cred/neopop-web/lib/components';
 // import { RootPage } from "./CardDetailsStyled";
 import { HeroSection, RootPage, Heading } from '../Home/HomeStyled';
-import './CardDetails.css'
+// import './CardDetails.css'
 import {
     ElevatedCard,
     Column,
@@ -27,7 +27,7 @@ function NewDepositSelection (props) {
 //   const handleClose = () => {
 //     setOpen(false);
 //   };
-console.log(props.cardDetails);
+// console.log(props.cardDetails);
   return (
     <>
         <HorizontalSpacer n={4} />
@@ -44,7 +44,7 @@ console.log(props.cardDetails);
             Select bank
         </Typography>
         <Typography {...FontVariant.CirkaBold14} color={mainColors.black}>
-            {props.cardDetails.maturityDate}
+            {/* {props.cardDetails.maturityDate} */}
         </Typography>
     </Row>
     <HorizontalSpacer n={4} />
@@ -53,7 +53,7 @@ console.log(props.cardDetails);
             Interest Rate
         </Typography>
         <Typography {...FontVariant.CirkaBold14} color={mainColors.black}>
-            {props.cardDetails.interestRate}%
+            {/* {props.cardDetails.interestRate}% */}
         </Typography>
     </Row>
     </div>

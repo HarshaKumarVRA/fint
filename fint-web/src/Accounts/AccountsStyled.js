@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Row } from '@cred/neopop-web/lib/components/Helpers';
 
 export const AccountsStyled = styled(Row)`
-    display: flex;
     align-items: left;
     text-align: center;
     .heading {

@@ -63,6 +63,7 @@ export default function Home() {
       <Accounts />
       <HorizontalSpacer n={8} />
 
+      {unInsuredAmount > 0 &&
       <HeroSection>
         <Row className='h-center'>
         <Typography {...fontNameSpaces.tc12b} color={colorGuide.darkComponents.font.bodyText}>
@@ -81,7 +82,7 @@ export default function Home() {
         </Button>
         </Row>
       </HeroSection>
-
+      }
       {/* <ToastContainer />
       <Button
         variant="primary"

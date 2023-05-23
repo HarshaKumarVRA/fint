@@ -11,7 +11,7 @@ export const AccountsData = [
     {
         number: 'xxxx-xxxx-2389',
         type : 'Deposit',
-        owningBank : 'Wells Fargo',
+        owningBank : 'Bank of America',
         originCountry : 'USA',
         depositAmount : 100000,
         maturityDate : '09/12/2023',
@@ -20,7 +20,7 @@ export const AccountsData = [
     {
         number: 'xxxx-xxxx-5241',
         type : 'Savings',
-        owningBank : 'Silicon Valley Bank',
+        owningBank : 'Capital One',
         originCountry : 'USA',
         depositAmount : 450000,
         maturityDate : '10/15/2024',
@@ -29,7 +29,7 @@ export const AccountsData = [
     {
         number: 'xxxx-xxxx-3445',
         type : 'Savings',
-        owningBank : 'First Republic Bank',
+        owningBank : 'Silican Valley Bank',
         originCountry : 'USA',
         depositAmount : 500000,
         maturityDate : '10/15/2024',

@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from "react";
 import { useState } from "react";
-import chasebanklogo from "../BankLogos/chasebanklogo.png";
+import chasebanklogo from "../BankLogos/chasebanklogo.svg";
 import sliderThumb from "../Assets/slider.svg";
 import {
   ElevatedCard,
@@ -22,6 +22,7 @@ import {
 } from "@cred/neopop-web/lib/primitives";
 import styled from "styled-components";
 import CardDetails from "../CardDetails/CardDetails";
+import BankLogo from "../BankLogos/BankLogo";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -38,11 +39,7 @@ const openCardDetails = (cardDetails) => {
 function Card (props) {
   const [isOpen, setOpen] = useState();
   const [cardDetails, setCardDetails] =useState(props.cardDetails);
-
-  // useEffect(() => {
-  //   setCardDetails(props.cardDetails);
-  //   console.log(cardDetails);
-  // }, []);
+  const [sliderBarColor, setSliderBarColor] =useState("#EE4D37");
 
   const handleClose = () => {
     setOpen(false);
@@ -53,7 +50,9 @@ function Card (props) {
     console.log(e.target.value);
     const tempCardDetails = JSON.parse(JSON.stringify(cardDetails));
     tempCardDetails.depositAmount = e.target.value;
+    setSliderBarColor(tempCardDetails.depositAmount <= 250000 ?  "#06C270" : "#EE4D37");
     setCardDetails(tempCardDetails);
+    props.updateAccounts(tempCardDetails);
   }
 
   return (
@@ -61,8 +60,8 @@ function Card (props) {
     <ElevatedCard
       backgroundColor="#D2D2D2"
       edgeColors={{
-        bottom: "#5C1532",
-        right: "#851E49"
+        bottom: "#E0E0E0",
+        right: "#FFFFFF"
       }}
       style={{
         width: "270px"
@@ -73,7 +72,10 @@ function Card (props) {
         <Column>
           <Row>
               <Typography {...fontNameSpaces.tc12b} color={mainColors.black}>
-                {cardDetails.owningBank}
+                <BankLogo bankName={cardDetails.owningBank} />
+                {/* {cardDetails.owningBank} */}
+                {/* <img src={require('../BankLogos/chasebanklogooo.svg').default} width={90} height={25} alt='mySvgImage' /> */}
+                {/* {chasebanklogo} */}
               </Typography>
           </Row>
               <HorizontalSpacer n={2} />
@@ -98,15 +100,18 @@ function Card (props) {
             </Button>
           } */}
           </Row>
-          <HorizontalSpacer n={4} />
-          <Row>
           {props.isEdit &&
-            <Slider min={0} max={2500000} step={1000}
+            <>
+            <HorizontalSpacer n={4} />
+            {/* <Row className="v-center"> */}
+            <Slider min={0} max={props.cardDetails.depositAmount} 
+            defaultValue={props.cardDetails.depositAmount}
+            step={1000}
             onChange={(e) => handleSliderChange(e)}
             onInput={() => console.log("value1")} 
             value={sliderValue}
             sliderConfig={
-              {sliderBackground : "#F08D32",
+              {sliderBackground : `${sliderBarColor}`,
               sliderHeight : "10px",
               sliderTransition : "all ease-in-out 0.05s",
               sliderWidth : "100%"
@@ -120,9 +125,12 @@ function Card (props) {
               thumbBorder: '0px',
               thumbBorderRadius: '50%',
           }} />
+          {/* </Row> */}
+          </>
           }
-          </Row>
-          <HorizontalSpacer n={4} />
+          {!props.isEdit &&
+            <HorizontalSpacer n={4} />
+          }
           <Row>
             {cardDetails.depositAmount <= 250000 ?
                         <Tag
@@ -146,9 +154,12 @@ function Card (props) {
 
           </Row>
           <HorizontalSpacer n={4} />
+          <Row>
           <Button 
-            {...getButtonConfig("blp50p1")} 
-            fullWidth={true}
+            kind="link"
+            color={mainColors.black}
+            // {...getButtonConfig("bdp50p2")} 
+            fullWidth={false}
             onClick={() => {
               console.log("I'm clicked");
               setOpen(true);
@@ -156,6 +167,7 @@ function Card (props) {
           >
             More Details
           </Button>
+          </Row>
         </Column>
       </ContentWrapper>
     </ElevatedCard>
