@@ -59,7 +59,7 @@ function Card (props) {
   return (
     <>
     <ElevatedCard
-      backgroundColor="#D2D2D2"
+      backgroundColor="#AE275F"
       edgeColors={{
         bottom: "#5C1532",
         right: "#851E49"
@@ -72,7 +72,7 @@ function Card (props) {
       <ContentWrapper>
         <Column>
           <Row>
-              <Typography {...fontNameSpaces.tc12b} color={mainColors.black}>
+              <Typography {...fontNameSpaces.tc12b} color={mainColors.white}>
                 {cardDetails.owningBank}
               </Typography>
           </Row>
@@ -80,7 +80,7 @@ function Card (props) {
           <Row>
           <Typography
                 {...fontNameSpaces.tb11m}
-                color={colorPalette.black[100]}
+                color={colorPalette.popWhite[100]}
                 overflow="ellipsis"
               >
                 {cardDetails.number}
@@ -88,7 +88,7 @@ function Card (props) {
           </Row>
           <HorizontalSpacer n={4} />
           <Row>
-          <Typography {...fontNameSpaces.th16b} color={mainColors.black}>
+          <Typography {...fontNameSpaces.th16b} color={mainColors.white}>
             ${cardDetails.depositAmount}
           </Typography>
           {/* <VerticalSpacer n={2} />

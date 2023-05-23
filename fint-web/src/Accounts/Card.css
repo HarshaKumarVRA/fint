@@ -1,0 +1,12 @@
+.image-container {
+    /* background: none; */
+    width: 300px; /* Set the desired width of the container */
+    height: 200px; /* Set the desired height of the container */
+  }
+  
+  .image {
+    background-color: transparent;
+    width: 100%; /* Make the image width fill the container */
+    height: 100%; /* Make the image height fill the container */
+    object-fit: cover; /* Adjust how the image fits within the container */
+  }
