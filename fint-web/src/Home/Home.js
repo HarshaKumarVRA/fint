@@ -66,7 +66,7 @@ export default function Home() {
       {unInsuredAmount > 0 &&
       <HeroSection>
         <Row className='h-center'>
-        <Typography {...fontNameSpaces.tc12b} color={colorGuide.darkComponents.font.bodyText}>
+        <Typography {...fontNameSpaces.tc12b} color={mainColors.red}>
         You have un-insured deposits worth ${unInsuredAmount}. Do you want to split them and mitigate the risk?
       </Typography>
       <VerticalSpacer n={2} />

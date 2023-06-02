@@ -55,6 +55,13 @@ const updateAccounts = (cardDetails) => {
     setAddNewInactive(tempAvailableFunds > 0 ? false : true);
 };
 
+const hadletest = () => {
+    setOpen(true);
+    console.log(AccountsData);
+    console.log(Accounts);
+    console.log(availableFunds);
+}
+
 return (
     <>
     <Row>
@@ -94,12 +101,12 @@ return (
         <Typography {...fontNameSpaces.th16b} color={mainColors.white}>
              ${availableFunds}
         </Typography>
-        <HorizontalSpacer n={12} />
+        <HorizontalSpacer n={17} />
         <Button
             colorMode="light"
             kind="elevated"
             onClick={() =>
-                setOpen(true)
+                hadletest()
             }
             size="big"
             disabled={addNewInactive}
@@ -114,7 +121,7 @@ return (
 
 <HorizontalDivider />
 <BottomSheet open={isOpen} handleClose={handleClose}>
-        <NewDepositSelection />
+        <NewDepositSelection availableFunds={availableFunds} AccountsData={AccountsData} updatedAccounts={Accounts}/>
     </BottomSheet>
     </>
 );
