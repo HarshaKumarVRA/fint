@@ -46,6 +46,11 @@ function Card (props) {
   };
   let sliderValue;
 
+  useEffect(() => {
+    console.log(props.cardDetails);
+    setCardDetails(props.cardDetails);
+  }, [props.styleUpdate]);
+
   const handleSliderChange = (e) => {
     console.log(e.target.value);
     const tempCardDetails = JSON.parse(JSON.stringify(cardDetails));
@@ -55,18 +60,38 @@ function Card (props) {
     props.updateAccounts(tempCardDetails);
   }
 
+  // const cardStyling = {
+  //   backgroundColor : "#D2D2D2",
+  //     edgeColors : {
+  //       bottom: "#E0E0E0",
+  //       right: "#FFFFFF"
+  //     },
+  //     style : {
+  //       width : "270px"
+  //     }
+  // }
+  console.log(cardDetails);
+  console.log(cardDetails.edited);
+  const cardStyling = {
+    backgroundColor : cardDetails.edited ? colorPalette.black[50] : "#D2D2D2",
+      edgeColors : {
+        bottom: cardDetails.edited ? colorPalette.white[50] : "#E0E0E0",
+        right: cardDetails.edited ? colorPalette.white[70] : "#FFFFFF"
+      },
+      style : {
+        width : "270px"
+      }
+  }
+  console.log(cardStyling);
+
   return (
     <>
+    {
+      console.log(cardStyling)
+    }
+    <>
     <ElevatedCard
-      backgroundColor="#D2D2D2"
-      edgeColors={{
-        bottom: "#E0E0E0",
-        right: "#FFFFFF"
-      }}
-      style={{
-        width: "270px"
-        // height: "270px"
-      }}
+      {...cardStyling}
     >
       <ContentWrapper>
         <Column>
@@ -100,7 +125,7 @@ function Card (props) {
             </Button>
           } */}
           </Row>
-          {props.isEdit &&
+          {!cardDetails.edited && props.isEdit &&
             <>
             <HorizontalSpacer n={4} />
             {/* <Row className="v-center"> */}
@@ -131,8 +156,21 @@ function Card (props) {
           {!props.isEdit &&
             <HorizontalSpacer n={4} />
           }
+          {cardDetails.edited && 
+            <HorizontalSpacer n={4} />
+          }
           <Row>
-            {cardDetails.depositAmount <= 250000 ?
+            {cardDetails.edited &&
+              <Tag
+              colorConfig={{
+                background: mainColors.green,
+                color: colorPalette.popWhite[400]
+              }}
+            >
+              Pending with Bank
+            </Tag>
+            }
+            {!cardDetails.edited && (cardDetails.depositAmount <= 250000 ?
                         <Tag
                         colorConfig={{
                           background: mainColors.green,
@@ -150,7 +188,7 @@ function Card (props) {
                       FDIC Un-Insured
                     </Tag> 
 
-            }
+            )}
 
           </Row>
           <HorizontalSpacer n={4} />
@@ -174,6 +212,7 @@ function Card (props) {
     <BottomSheet open={isOpen} handleClose={handleClose}>
         <CardDetails cardDetails={cardDetails} />
     </BottomSheet>
+    </>
     </>
   );
 }

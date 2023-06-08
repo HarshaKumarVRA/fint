@@ -52,6 +52,7 @@ const handleSliderChange = (e) => {
 }
 
 const setBankSelected = (bankName) => {
+  console.log(props.updatedAccounts);
   const unEditedAccounts = props.AccountsData.filter(accountdata => accountdata.depositAmount <= 250000);
   const amountUnderBank = unEditedAccounts.filter(accountData => accountData.owningBank === bankName)
   .reduce((sum1, currentValue) => sum1 + parseInt(currentValue.depositAmount), 0) +
@@ -65,11 +66,13 @@ const setBankSelected = (bankName) => {
     unInsured : amountUnderBank + newDepositData.depositAmount > 250000
   }
   setNewDepositData(tempDepositData);
+  console.log(tempDepositData);
   setSliderBarColor(tempDepositData.unInsured ? "#EE4D37" : "#06C270");
 }
 
 const handleSubmit = () => {
 console.log("hjh");
+props.addNewDeposit(newDepositData);
 };
 
   return (
@@ -122,7 +125,7 @@ console.log("hjh");
         </Typography>
     </Row>
     <HorizontalSpacer n={6} />
-    <Row className="v-justify">
+    <Row>
       <Column>
       <Typography {...FontVariant.HeadingBold14} color={mainColors.black}>
             Deposit Amount
@@ -130,9 +133,7 @@ console.log("hjh");
       </Column>
         
         <VerticalSpacer n={35} />
-        ${newDepositData.depositAmount}
-        <Column className="v-justify">
-          {/* <HorizontalSpacer n={2} /> */}
+        <Column>
         <Slider min={0} max={props.availableFunds} 
             defaultValue={0}
             step={1000}
@@ -155,6 +156,8 @@ console.log("hjh");
               thumbBorderRadius: '50%',
           }} />
         </Column>
+        <VerticalSpacer n={2} />
+        ${newDepositData.depositAmount}
     </Row>
     <HorizontalSpacer n={15} />
     </div>
